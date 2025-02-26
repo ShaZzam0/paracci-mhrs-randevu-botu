@@ -16,7 +16,7 @@ dev_mode = False
 config = {                                          
     "kullaniciAdi": "TC_KİMLİK_NUMARANIZI_GİRİN",
     "parola": "ŞİFRENİZİ_GİRİN",
-    "notification_method": 4,  # 1 = WhatsApp, 2 = SMS, 3 = Open File, 4 = Open URL
+    "notification_method": 4,  # 1 = WhatsApp, 2 = SMS (SMS ile iletilen bilgiler geç gelebilir, bu yüzden kullanılması tavsiye edilmez), 3 = Open File, 4 = Open URL
     "file_path": "C:/Users/user/Downloads/found.mp4",
     "open_url": "https://mhrs.gov.tr/vatandas#/",
     "account_sid": "TWILIO_ACCOUNT_SID",
