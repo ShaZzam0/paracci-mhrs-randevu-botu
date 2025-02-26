@@ -25,6 +25,9 @@ config = {
     "from_sms_number": "+12295978361",
     "to_whatsapp_number": ["whatsapp:+905*********", "whatsapp:+905*********"],
     "to_sms_number": ["+905*********", "+905*********"],
+    "login_cooldown": 120,    # Giriş başarısızsa bekleme süresi (saniye)
+    "check_cooldown": 300,    # Randevu bulunamazsa bekleme süresi (saniye)
+    "success_cooldown": 1200,  # Randevu bulunduğunda bekleme süresi (saniye)
     "aksiyonId": "200",
     "cinsiyet": "Cinsiyetiniz", # Kadın (F) veya Erkek (M)
     "mhrsHekimId": -1,
@@ -236,10 +239,10 @@ def main():
         
         token = login_to_mhrs()
         if not token:
-            dev_print("Giriş yapılamadı. 2 dakika sonra tekrar denenecek.")
-            print("Giriş yapılamadı. 2 dakika sonra tekrar denenecek.")
+            dev_print(f"Giriş yapılamadı. {config['login_cooldown'] // 60} dakika sonra tekrar denenecek.")
+            print(f"Giriş yapılamadı. {config['login_cooldown'] // 60} dakika sonra tekrar denenecek.")
             print("Config bilgilerini doğru şekilde ayarlamadığınızı düşünüyorsanız, programı kapatın ve yönergeyi tekrar gözden geçirin.")
-            wait_with_progress(120, "2 dakika bekleniyor...", clear_lines=3)
+            wait_with_progress(config["login_cooldown"], f"{config['login_cooldown'] // 60} dakika bekleniyor...", clear_lines=3)
             continue
         
         while not connection_error:
@@ -259,13 +262,13 @@ def main():
                            f"Hemen kontrol et: https://mhrs.gov.tr/vatandas#/")
 
                 send_message(message)
-                print("Randevu bulundu ve mesaj gönderildi. Eğer fark etmediyseniz, 20 dakika sonra tekrar kontrol edilecek ve bilgilendirileceksiniz.")
+                print(f"Randevu bulundu ve mesaj gönderildi. Eğer fark etmediyseniz, {config['success_cooldown'] // 60} dakika sonra tekrar kontrol edilecek ve bilgilendirileceksiniz.")
                 print("Tekrar kontrol edilmesini istemiyorsanız, ESC tuşuna basarak programı durdurabilirsiniz.")
-                wait_with_progress(1200, "20 dakika bekleniyor...", clear_lines=3)
+                wait_with_progress(config["success_cooldown"], f"{config['success_cooldown'] // 60} dakika bekleniyor...", clear_lines=3)
             else:
-                dev_print("Randevu bulunamadı. 5 dakika sonra tekrar denenecek.")
-                print("Randevu bulunamadı. 5 dakika sonra tekrar denenecek.")
-                wait_with_progress(300, "5 dakika bekleniyor...", clear_lines=2)
+                dev_print(f"Randevu bulunamadı. {config['check_cooldown'] // 60} dakika sonra tekrar denenecek.")
+                print(f"Randevu bulunamadı. {config['check_cooldown'] // 60} dakika sonra tekrar denenecek.")
+                wait_with_progress(config["check_cooldown"], f"{config['check_cooldown'] // 60} dakika bekleniyor...", clear_lines=2)
         
         dev_print("Oturum hatası tespit edildi, program yeniden başlatılıyor...")
 
