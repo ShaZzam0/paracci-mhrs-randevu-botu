@@ -63,6 +63,15 @@ Twilio hesabınızda SMS veya WhatsApp üzerinden mesaj gönderebilmek için aş
 "to_sms_number": ["+905*********", "+905*********"],  # Bildirim alacak SMS numaraları
 ```
 
+## Bekleme Süre Ayarları
+```python
+{
+    "login_cooldown": 120,    # Giriş başarısızsa bekleme süresi (saniye)
+    "check_cooldown": 300,    # Randevu bulunamazsa bekleme süresi (saniye)
+    "success_cooldown": 1200  # Randevu bulunduğunda bekleme süresi (saniye)
+}
+```
+
 #### MHRS Randevu Arama Kriterleri
 ```python
 "aksiyonId": "200",  # MHRS aksiyon ID
