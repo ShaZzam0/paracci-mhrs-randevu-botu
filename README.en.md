@@ -63,6 +63,15 @@ To send and receive SMS or WhatsApp messages on your Twilio account, follow thes
 "to_sms_number": ["+905*********", "+905*********"],  # SMS numbers to receive notifications
 ```
 
+## Waiting Time Settings
+```python
+{
+    "login_cooldown": 120,    # Waiting time if login fails (seconds)
+    "check_cooldown": 300,    # Waiting time if no appointment is found (seconds)
+    "success_cooldown": 1200  # Waiting time when an appointment is found (seconds)
+}
+```
+
 #### MHRS Appointment Search Criteria
 ```python
 "aksiyonId": "200",  # MHRS action ID
