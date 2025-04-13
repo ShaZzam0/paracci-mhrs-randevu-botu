@@ -1,6 +1,6 @@
-# MHRS Randevu Botu
+# MHRS Randevu Botu – Python ile Otomatik MHRS Randevu Takip ve Bildirim Sistemi
 
-Bu proje, **MHRS (Merkezi Hekim Randevu Sistemi)** üzerinden randevu aramak ve bulunduğunda kullanıcıya bildirim göndermek için geliştirilmiştir.
+Bu açık kaynaklı Python projesi, Türkiye'nin Merkezi Hekim Randevu Sistemi (MHRS) üzerinden otomatik olarak randevu arayıp, bulunduğunda kullanıcıya SMS, WhatsApp veya sesli uyarı yoluyla bildirim gönderen bir bot sistemidir. MHRS yoğunluğunda hızlı aksiyon almak isteyenler için etkili bir çözüm sunar.
 
 ## Kurulum ve Kullanım
 
