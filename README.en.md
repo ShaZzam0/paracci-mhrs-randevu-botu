@@ -1,6 +1,7 @@
-# MHRS Appointment Bot
+# MHRS Appointment Bot – Automated MHRS Appointment Tracking and Notification System in Python
 
-This project is developed to search for appointments via **MHRS (Central Physician Appointment System)** and notify the user when an appointment is found.
+This open-source Python project is a bot system that automatically searches for appointments on Turkey's Central Physician Appointment System (MHRS) and sends notifications to the user via SMS, WhatsApp, or voice alerts when an appointment is found.  
+It offers an effective solution for those who want to act quickly during periods of high MHRS traffic.
 
 ## Installation and Usage
 
@@ -168,3 +169,10 @@ The software can be freely used, modified, and distributed for personal use. How
 Commercial and malicious uses are prohibited. The developer of this software cannot be held responsible if it is used in malicious attempts, such as fraud, harm, or other illegal actions.
 
 By using the software, you agree to these terms.
+
+## Links
+
+- [Official MHRS Website](https://www.mhrs.gov.tr)
+- [Twilio WhatsApp API](https://www.twilio.com/whatsapp)
+- [Twilio SMS API](https://www.twilio.com/en-us/messaging/channels/sms)
+- [Official Python Website](https://www.python.org)
