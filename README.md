@@ -168,3 +168,10 @@ Yazılım, kişisel kullanım için serbestçe kullanılabilir, değiştirilebil
 Ticari ve kötü niyetli kullanımlar yasaktır. Bu yazılımın, dolandırıcılık, zarar verme veya diğer yasa dışı eylemler gibi kötü niyetli girişimlerde kullanılması durumunda, yazılımın geliştiricisi sorumlu tutulamaz.
 
 Yazılımı kullanarak bu şartları kabul etmiş olursunuz.
+
+## Bağlantılar
+
+- [MHRS Resmi Sitesi](https://www.mhrs.gov.tr)
+- [Twilio WhatsApp API](https://www.twilio.com/whatsapp)
+- [Twilio SMS API](https://www.twilio.com/en-us/messaging/channels/sms)
+- [Python Resmi Sitesi](https://www.python.org)
