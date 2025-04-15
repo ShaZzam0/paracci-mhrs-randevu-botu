@@ -114,6 +114,12 @@ Daha fazla bilgi için Twilio dokümantasyonuna göz atabilirsiniz: [Twilio Dok�
   "mesaj": "Aradığınız klinikte alınabilir uygun randevu <b> <u> <font>bulunamamıştır.</font></u> </b>Randevu aradığınız klinik için kriterlerinizi değiştirerek farklı hastane ya da semt polikliniklerinden tekrar arama yapabilirsiniz. (RND4010)"
 }
 ```
+```json
+{
+  "kodu": "RND4030",
+  "mesaj": "Aradığınız kriterlere uygun randevu bulunamamıştır. Bu kriterlere uygun randevu olması halinde size haber verilmesi için talep oluşturmak ister misiniz? (RND4030)"
+}
+```
 
 **Seçili Klinik İçin Randevu Alma Yetkiniz Yoksa**
 ```json
