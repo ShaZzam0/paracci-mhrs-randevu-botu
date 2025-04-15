@@ -154,10 +154,10 @@ def check_appointment(token):
                     "randevuZamani": baslangic_zamani.get("zaman", "Bilinmiyor")
                 }
 
-        elif any(error.get("kodu") == "RND4010" for error in data.get("errors", [])):
+        elif any(error.get("kodu") in ["RND4010", "RND4030"] for error in data.get("errors", [])):
             dev_print("Aradığınız kriterlerde uygun randevu bulunamadı.")
             return None
-
+        
     except requests.exceptions.RequestException as e:
         dev_print(f"HTTP isteği hatası: {e}")
         return None
