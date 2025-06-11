@@ -1,6 +1,6 @@
 # MHRS Randevu Botu – Python ile Otomatik MHRS Randevu Takip ve Bildirim Sistemi
 
-Bu açık kaynaklı Python projesi, Türkiye'nin Merkezi Hekim Randevu Sistemi (MHRS) üzerinden otomatik olarak randevu arayıp, bulunduğunda kullanıcıya SMS, WhatsApp veya sesli uyarı yoluyla bildirim gönderen bir bot sistemidir. MHRS yoğunluğunda hızlı aksiyon almak isteyenler için etkili bir çözüm sunar.
+Bu açık kaynaklı Python projesi, Türkiye'nin Merkezi Hekim Randevu Sistemi (MHRS) üzerinden otomatik olarak randevu arayıp, bulunduğunda kullanıcıya SMS, WhatsApp, Telegram veya sesli uyarı yoluyla bildirim gönderen bir bot sistemidir. MHRS yoğunluğunda hızlı aksiyon almak isteyenler için etkili bir çözüm sunar.
 
 ## Kurulum ve Kullanım
 
@@ -9,10 +9,11 @@ Bu projeyi çalıştırmak için aşağıdaki bağımlılıkların sisteminizde 
 
 - Python 3.x
 - Twilio (Eğer SMS veya WhatsApp bildirimi kullanacaksanız)
+- python-telegram-bot (Eğer Telegram bildirimi kullanacaksanız)
 
 Bağımlılıkları yüklemek için:
 ```sh
-pip install requests alive-progress twilio keyboard
+pip install requests alive-progress twilio keyboard python-telegram-bot
 ```
 
 ### 2. Yapılandırma
@@ -27,13 +28,28 @@ Bu alanlara MHRS sistemine giriş yapmak için kullandığınız TC kimlik numar
 
 #### Bildirim Yöntemi
 ```python
-"notification_method": 4  # 1 = WhatsApp, 2 = SMS, 3 = Dosya Aç, 4 = URL Aç
+"notification_method": 5  # 1 = WhatsApp, 2 = SMS, 3 = Dosya Aç, 4 = URL Aç, 5 = Telegram
 ```
 **Seçenekler:**
 - `1` = WhatsApp üzerinden bildirim alırsınız.
 - `2` = SMS üzerinden bildirim alırsınız.
 - `3` = Randevu bulunduğunda belirlediğiniz dosya açılır.
-- `4` = Randevu bulunduğunda belirlediğiniz URL açılır ve belirlediğiniz sisteme bağlı olarak bir uyarı sesi çalabilir.
+- `4` = Randevu bulunduğunda belirlediğiniz URL açılır.
+- `5` = Telegram üzerinden bildirim alırsınız.
+
+#### Telegram Ayarları
+Telegram bildirimi almak istiyorsanız, aşağıdaki adımları takip edin:
+
+1. Telegram'da @BotFather botunu başlatın.
+2. `/newbot` komutunu kullanarak yeni bir bot oluşturun.
+3. Bot token'ınızı alın.
+4. Botunuzla bir sohbet başlatın.
+5. Chat ID'nizi almak için @ScanIDBot botunu başlatın.
+
+```python
+"telegram_bot_token": "YOUR_BOT_TOKEN",  # Telegram bot token'ınız
+"telegram_chat_ids": ["YOUR_CHAT_ID"],  # Bildirim alacak Telegram chat ID'leri
+```
 
 **Dosya veya URL Kullanımı:**
 ```python
@@ -164,6 +180,12 @@ Daha fazla bilgi için Twilio dokümantasyonuna göz atabilirsiniz: [Twilio Dok�
 - **MHRS ID'lerini tekrar kontrol edin** ve doğruluğundan emin olun.
 - Eğer hiçbir şey fayda etmezse, **hata mesajını paylaşarak destek alın**.
 
+**4. Telegram bildirimleri çalışmıyor, ne yapmalıyım?**
+- Bot token'ınızın doğru olduğundan emin olun.
+- Chat ID'nizin doğru olduğundan emin olun.
+- Botunuzla bir sohbet başlattığınızdan emin olun.
+- `python-telegram-bot` paketinin yüklü olduğundan emin olun.
+  
 ---
 
 ## Lisans
@@ -181,3 +203,4 @@ Yazılımı kullanarak bu şartları kabul etmiş olursunuz.
 - [Twilio WhatsApp API](https://www.twilio.com/whatsapp)
 - [Twilio SMS API](https://www.twilio.com/en-us/messaging/channels/sms)
 - [Python Resmi Sitesi](https://www.python.org)
+- [Telegram Bot API](https://core.telegram.org/bots/api)
