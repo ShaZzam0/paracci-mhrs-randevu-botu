@@ -10,17 +10,21 @@ from alive_progress import alive_bar
 import random
 from twilio.rest import Client
 from datetime import datetime
+import telegram
+import asyncio
 
 dev_mode = False
 
 config = {                                          
     "kullaniciAdi": "TC_KİMLİK_NUMARANIZI_GİRİN",
     "parola": "ŞİFRENİZİ_GİRİN",
-    "notification_method": 4,  # 1 = WhatsApp, 2 = SMS (SMS ile iletilen bilgiler geç gelebilir, bu yüzden kullanılması tavsiye edilmez), 3 = Open File, 4 = Open URL
+    "notification_method": 4,  # 1 = WhatsApp, 2 = SMS (SMS ile iletilen bilgiler geç gelebilir, bu yüzden kullanılması tavsiye edilmez), 3 = Open File, 4 = Open URL, 5 = Telegram
     "file_path": "C:/Users/user/Downloads/found.mp4",
     "open_url": "https://mhrs.gov.tr/vatandas#/",
     "account_sid": "TWILIO_ACCOUNT_SID",
     "auth_token": "TWILIO_AUTH_TOKEN",
+    "telegram_bot_token": "YOUR_BOT_TOKEN",  # Telegram bot tokeni
+    "telegram_chat_ids": ["YOUR_CHAT_ID"],  # Telegram chat ID'leri
     "from_whatsapp_number": "whatsapp:+14155238886",
     "from_sms_number": "+12295978361",
     "to_whatsapp_number": ["whatsapp:+905*********", "whatsapp:+905*********"],
@@ -162,6 +166,15 @@ def check_appointment(token):
         dev_print(f"HTTP isteği hatası: {e}")
         return None
 
+async def send_telegram_message(message):
+    bot = telegram.Bot(token=config["telegram_bot_token"])
+    for chat_id in config["telegram_chat_ids"]:
+        try:
+            await bot.send_message(chat_id=chat_id, text=message)
+            dev_print(f"Telegram mesajı başarıyla gönderildi: {chat_id}")
+        except Exception as e:
+            dev_print(f"Telegram mesajı gönderilirken hata oluştu: {e}")
+            
 def send_message(message):
     client = Client(config["account_sid"], config["auth_token"])
     try:
@@ -209,6 +222,11 @@ def send_message(message):
             webbrowser.open(config["open_url"])
             play_notification_sound()
 
+        elif config["notification_method"] == 5:
+            dev_print("Telegram mesajı gönderiliyor.")
+            asyncio.run(send_telegram_message(message))
+            play_notification_sound()
+            
     except Exception as e:
         dev_print(f"Mesaj gönderme hatası: {e}")
         play_notification_sound()
